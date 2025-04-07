@@ -4,10 +4,6 @@ const nextConfig = {
   swcMinify: true,
   images: {
     unoptimized: true
-  },
-  // Ensure we handle static files correctly
-  experimental: {
-    appDir: true,
   }
 }
 
