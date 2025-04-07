@@ -1,38 +1,29 @@
 {
-  "name": "animejs",
-  "version": "3.2.2",
-  "homepage": "http://animejs.com",
-  "repository": "juliangarnier/anime",
-  "description": "JavaScript animation engine",
-  "umd:main": "lib/anime.min.js",
-  "module": "lib/anime.es.js",
-  "main": "lib/anime.js",
-  "umd:name": "anime",
-  "license": "MIT",
-  "author": "Julian Garnier <hello@julian.gr>",
-  "files": [
-    "lib"
-  ],
+  "name": "design-ai-landing",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "node build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "bugs": {
-    "url": "https://github.com/juliangarnier/anime/issues"
+  "dependencies": {
+    "next": "13.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^11.0.8",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "@heroicons/react": "^2.1.1"
   },
-  "keywords": [
-    "anime",
-    "animation",
-    "javascript",
-    "CSS",
-    "transforms",
-    "SVG",
-    "canvas"
-  ],
   "devDependencies": {
-    "gzip-size": "^4.1.0",
-    "pretty-bytes": "^4.0.2",
-    "rollup": "^0.53.2",
-    "rollup-plugin-buble": "^0.18.0",
-    "uglify-js": "^3.3.4"
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "typescript": "^5.4.2",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "13.4.19"
   }
 }
