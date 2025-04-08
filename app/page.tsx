@@ -195,26 +195,31 @@ export default function Home() {
       name: 'Particle System',
       description: 'Dynamic particle animations for vibrant backgrounds and effects',
       preview: () => {
+        const [isBrowser, setIsBrowser] = useState(false);
         const [cycle, setCycle] = useState(0);
         
         useEffect(() => {
-          if (!isMounted) return;
+          setIsBrowser(true);
+        }, []);
+
+        useEffect(() => {
+          if (!isBrowser) return;
           
           const interval = setInterval(() => {
             setCycle((prev) => (prev + 1) % 2);
           }, 4000);
           
           return () => clearInterval(interval);
-        }, [isMounted]);
+        }, [isBrowser]);
 
-        if (!isMounted) return null;
+        if (!isBrowser) return null;
         
         return (
           <div className="relative h-full w-full overflow-hidden bg-black/20 rounded-lg backdrop-blur-sm">
             <div className="absolute inset-0 flex items-center justify-center">
               {[...Array(30)].map((_, i) => {
                 const size = Math.random() * 6 + 4;
-                const redValue = Math.floor(Math.random() * 55) + 200;
+                const redValue = Math.random() * 55 + 200;
                 const angle = (i / 30) * Math.PI * 2;
                 const distance = cycle === 0 ? 120 : 20;
                 
