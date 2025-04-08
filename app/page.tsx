@@ -27,6 +27,12 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [showDesign, setShowDesign] = useState(false);
   const [isDemoPlaying, setIsDemoPlaying] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const [currentDesignState, setCurrentDesignState] = useState<DesignState>({
     colors: ['from-primary to-secondary', 'from-blue-400 to-purple-600'],
     speed: 2,
@@ -189,25 +195,28 @@ export default function Home() {
       name: 'Particle System',
       description: 'Dynamic particle animations for vibrant backgrounds and effects',
       preview: () => {
-        // Animation cycle for regrouping effect
         const [cycle, setCycle] = useState(0);
         
         useEffect(() => {
+          if (!isMounted) return;
+          
           const interval = setInterval(() => {
             setCycle((prev) => (prev + 1) % 2);
           }, 4000);
           
           return () => clearInterval(interval);
-        }, []);
+        }, [isMounted]);
+
+        if (!isMounted) return null;
         
         return (
           <div className="relative h-full w-full overflow-hidden bg-black/20 rounded-lg backdrop-blur-sm">
             <div className="absolute inset-0 flex items-center justify-center">
               {[...Array(30)].map((_, i) => {
                 const size = Math.random() * 6 + 4;
-                const redValue = Math.floor(Math.random() * 55) + 200; // Mostly red colors (200-255)
-                const angle = (i / 30) * Math.PI * 2; // Distribute particles in a circle
-                const distance = cycle === 0 ? 120 : 20; // Spread out or group together
+                const redValue = Math.floor(Math.random() * 55) + 200;
+                const angle = (i / 30) * Math.PI * 2;
+                const distance = cycle === 0 ? 120 : 20;
                 
                 return (
                   <motion.div
